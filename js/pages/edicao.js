@@ -9,7 +9,8 @@ export function criarEdicao() {
     const titulo = document.createElement('h2')
     titulo.textContent = 'Edição'
 
-    // Card Categorias
+
+
     const cardCategorias = document.createElement('div')
     cardCategorias.classList.add('cadastro-card')
 
@@ -29,7 +30,8 @@ export function criarEdicao() {
 
     cardCategorias.append(labelCategorias, descCategorias, btnCategorias)
 
-    // Card Produtos
+
+
     const cardProdutos = document.createElement('div')
     cardProdutos.classList.add('cadastro-card')
 

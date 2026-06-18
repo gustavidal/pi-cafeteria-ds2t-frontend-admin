@@ -9,7 +9,8 @@ export function criarCadastros() {
     const titulo = document.createElement('h2')
     titulo.textContent = 'Cadastros'
 
-    // Card Categorias
+
+
     const cardCategorias = document.createElement('div')
     cardCategorias.classList.add('cadastro-card')
 
@@ -29,7 +30,8 @@ export function criarCadastros() {
 
     cardCategorias.append(labelCategorias, descCategorias, btnCategorias)
 
-    // Card Produtos
+
+    
     const cardProdutos = document.createElement('div')
     cardProdutos.classList.add('cadastro-card')
 

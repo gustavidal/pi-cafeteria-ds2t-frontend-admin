@@ -11,11 +11,13 @@ export async function criarFormCadastroCategoria() {
     const titulo = document.createElement('h2')
     titulo.textContent = 'Adição de Categorias'
 
-    // ── Área principal do form ──
+
+
     const form = document.createElement('form')
     form.classList.add('form-edicao')
 
-    // Coluna esquerda — foto
+
+
     const colunaFoto = document.createElement('div')
     colunaFoto.classList.add('form-coluna-foto')
 
@@ -46,7 +48,8 @@ export async function criarFormCadastroCategoria() {
     fotoBox.append(fotoPreview, fotoInput)
     colunaFoto.append(fotoLabel, fotoBox)
 
-    // Coluna direita — campos de texto
+
+
     const colunaCampos = document.createElement('div')
     colunaCampos.classList.add('form-coluna-campos')
 
@@ -76,7 +79,8 @@ export async function criarFormCadastroCategoria() {
     colunaCampos.append(labelNome, inputNome, labelDesc, textareaDesc)
     form.append(colunaFoto, colunaCampos)
 
-    // ── Botões de ação ──
+
+
     const acoes = document.createElement('div')
     acoes.classList.add('form-acoes')
 
@@ -93,7 +97,8 @@ export async function criarFormCadastroCategoria() {
 
     acoes.append(btnSalvar, btnDescartar)
 
-    // ── Salvar (POST) ──
+
+
     btnSalvar.onclick = async () => {
         const nome = inputNome.value.trim()
         const descricao = textareaDesc.value.trim()

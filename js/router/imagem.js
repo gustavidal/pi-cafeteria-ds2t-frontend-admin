@@ -1,4 +1,5 @@
 'use strict'
+
 const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/imagem'
 
 export async function getImagens() {
@@ -17,7 +18,8 @@ export async function postImagem(imagem) {
     const options = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(imagem)
     }
@@ -31,7 +33,8 @@ export async function putImagem(id, imagem) {
     const options = {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(imagem)
     }
@@ -43,7 +46,10 @@ export async function putImagem(id, imagem) {
 
 export async function deleteImagem(id) {
     const options = {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     const response = await fetch(`${URL}/${id}`, options)

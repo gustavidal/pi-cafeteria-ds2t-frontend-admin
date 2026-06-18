@@ -26,7 +26,7 @@ export async function criarEdicaoProdutos() {
 
             const imagem = document.createElement('img')
             imagem.classList.add('item-card-imagem')
-            imagem.src = produto.imagem?.[0]?.url || './img/placeholder.svg'
+            imagem.src = produto.imagem[0].url
             imagem.alt = produto.nome
 
             const info = document.createElement('div')

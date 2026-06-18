@@ -1,4 +1,5 @@
 'use strict'
+
 const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/categoria'
 
 export async function getCategorias() {
@@ -17,7 +18,8 @@ export async function postCategoria(categoria) {
     const options = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(categoria)
     }
@@ -31,19 +33,23 @@ export async function putCategoria(id, categoria) {
     const options = {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(categoria)
     }
-    
+
     const response = await fetch(`${URL}/${id}`, options)
-    if (!response.ok) throw new Error('Erro ao criar uma nova categoria')
+    if (!response.ok) throw new Error('Erro ao atualizar uma categoria')
     return response.json()
 }
 
 export async function deleteCategoria(id) {
     const options = {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     }
 
     const response = await fetch(`${URL}/${id}`, options)

@@ -13,11 +13,13 @@ export async function criarFormCadastroProduto() {
     const titulo = document.createElement('h2')
     titulo.textContent = 'Adição de Produtos'
 
-    // ── Área principal do form ──
+
+
     const form = document.createElement('form')
     form.classList.add('form-edicao')
 
-    // Coluna esquerda — foto + valor
+
+
     const colunaFoto = document.createElement('div')
     colunaFoto.classList.add('form-coluna-foto')
 
@@ -63,7 +65,8 @@ export async function criarFormCadastroProduto() {
 
     colunaFoto.append(fotoLabel, fotoBox, labelValor, inputValor)
 
-    // Coluna direita — nome + descrição
+
+    
     const colunaCampos = document.createElement('div')
     colunaCampos.classList.add('form-coluna-campos')
 
@@ -93,7 +96,8 @@ export async function criarFormCadastroProduto() {
     colunaCampos.append(labelNome, inputNome, labelDesc, textareaDesc)
     form.append(colunaFoto, colunaCampos)
 
-    // ── Seção de categorias ──
+
+
     const categoriasSection = document.createElement('div')
     categoriasSection.classList.add('form-categorias-section')
 
@@ -134,7 +138,8 @@ export async function criarFormCadastroProduto() {
 
     categoriasSection.append(categoriasLabel, categoriasLista, btnConfirmar)
 
-    // ── Botões de ação ──
+
+
     const acoes = document.createElement('div')
     acoes.classList.add('form-acoes')
 
@@ -151,12 +156,14 @@ export async function criarFormCadastroProduto() {
 
     acoes.append(btnSalvar, btnDescartar)
 
-    // ── Linha inferior: categorias + ações ──
+
+
     const rodape = document.createElement('div')
     rodape.classList.add('form-rodape')
     rodape.append(categoriasSection, acoes)
 
-    // ── Salvar: POST produto → POST imagem ──
+
+
     btnSalvar.onclick = async () => {
         const nome = inputNome.value.trim()
         const descricao = textareaDesc.value.trim()
@@ -177,7 +184,8 @@ export async function criarFormCadastroProduto() {
             btnSalvar.disabled = true
             btnSalvar.textContent = 'Salvando...'
 
-            // 1. POST produto
+
+
             const categoriasArray = [...categoriasSelecionadas].map(id => ({ id }))
 
             const produto = await postProduto({
@@ -187,12 +195,13 @@ export async function criarFormCadastroProduto() {
                 categoria: categoriasArray
             })
 
-            // 2. Upload da imagem + POST imagem com id do produto
+
+
             const urlImagem = await uploadParaCloudinary(fotoInput.files[0])
 
             await postImagem({
                 url: urlImagem,
-                id_produto: produto.id
+                id_produto: produto.response.id
             })
 
             renderizarPagina('cadastros')
