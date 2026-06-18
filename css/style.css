@@ -8,8 +8,7 @@ main {
     background-color: var(--primary-color);
 }
 
-/* ── NAVBAR ── */
-
+/* NAVBAR */
 #navbar {
     background-color: var(--secundary-color);
     width: 359px;
@@ -70,8 +69,7 @@ main {
     font-size: 30px;
 }
 
-/* ── CONTAINER / SCREEN ── */
-
+/* CONTAINER / SCREEN */
 #container {
     flex: 1;
     display: flex;
@@ -91,7 +89,10 @@ main {
     font-family: 'Julius Sans One', sans-serif;
 }
 
-/* ── TELA CADASTROS ── */
+/* TELA CADASTROS */
+.screen-cadastros, .screen-edicao {
+    height: 100%;
+}
 
 .screen-cadastros h2 {
     font-size: 20px;
@@ -108,6 +109,7 @@ main {
     padding: 20px 25px;
     margin-bottom: 25px;
     gap: 25px;
+    height: 25%;
 }
 
 .cadastro-card .card-label {
@@ -143,8 +145,7 @@ main {
     background-color: var(--tertiary-color);
 }
 
-/* ── TELA EDIÇÃO (títulos compartilhados) ── */
-
+/* TELA EDIÇÃO */
 .screen-edicao h2,
 .screen-edicao-categorias h2,
 .screen-edicao-produtos h2 {
@@ -169,8 +170,7 @@ main {
     margin-top: 20px;
 }
 
-/* ── LISTA DE ITENS ── */
-
+/* LISTA DE ITENS */
 .lista-container {
     display: flex;
     flex-direction: column;
@@ -238,8 +238,7 @@ main {
     opacity: 0.85;
 }
 
-/* ── BOTÃO VOLTAR ── */
-
+/* BOTÃO VOLTAR */
 .btn-voltar {
     background: none;
     border: none;
@@ -255,8 +254,7 @@ main {
     transform: translateX(-4px);
 }
 
-/* ── FORMULÁRIO DE EDIÇÃO / CADASTRO ── */
-
+/* FORMULÁRIO DE EDIÇÃO / CADASTRO */
 .screen-form h2 {
     font-size: 20px;
     font-weight: 400;
@@ -416,8 +414,7 @@ main {
     font-weight: 600;
 }
 
-/* ── SEÇÃO DE CATEGORIAS ── */
-
+/* SEÇÃO DE CATEGORIAS */
 .form-rodape {
     display: flex;
     align-items: flex-end;
@@ -480,8 +477,7 @@ main {
     background-color: #bbb;
 }
 
-/* ── RESPONSIVO: TABLET ── */
-
+/* RESPONSIVO: TABLET */
 @media (max-width: 1024px) {
     #navbar {
         width: 220px;
@@ -518,8 +514,7 @@ main {
     }
 }
 
-/* ── RESPONSIVO: MOBILE ── */
-
+/* RESPONSIVO: MOBILE */
 @media (max-width: 640px) {
     main {
         flex-direction: column;

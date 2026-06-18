@@ -1,6 +1,6 @@
 'use strict'
 
-const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/produto'
+const URL = 'http://localhost:8080/v1/frequency80cafe/administracao/produto'
 
 export async function getProdutos() {
     const response = await fetch(URL)

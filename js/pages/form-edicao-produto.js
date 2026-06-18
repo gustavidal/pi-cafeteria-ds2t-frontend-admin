@@ -110,18 +110,16 @@ export async function criarFormEdicaoProduto(id) {
     let imagemId = null
 
     try {
-        const [produto, todasCategorias] = await Promise.all([
-            getProduto(id),
-            getCategorias()
-        ])
+        const produto = await getProduto(id)
+        const todasCategorias = await getCategorias()
 
         // Pré-preencher campos
-        inputNome.value = produto.nome || ''
-        textareaDesc.value = produto.descricao || ''
-        inputValor.value = produto.preco ?? ''
+        inputNome.value    = produto.response.produto[0].nome
+        textareaDesc.value = produto.response.produto[0].descricao
+        inputValor.value   = produto.response.produto[0].preco
 
         // Pré-preencher imagem
-        const imagem = produto.imagem?.[0]
+        const imagem = produto.response.produto[0].imagem[0]
         if (imagem) {
             imagemId = imagem.id
             fotoPreview.src = imagem.url
@@ -129,9 +127,9 @@ export async function criarFormEdicaoProduto(id) {
         }
 
         // Categorias já atribuídas ao produto
-        const idsAtribuidos = new Set((produto.categoria || []).map(c => c.id))
+        const idsAtribuidos = new Set((produto.response.produto[0].categoria || []).map(c => c.id))
 
-        todasCategorias.forEach(cat => {
+        todasCategorias.response.categorias.forEach(cat => {
             if (idsAtribuidos.has(cat.id)) categoriasSelecionadas.add(cat.id)
 
             const item = document.createElement('label')
@@ -187,7 +185,7 @@ export async function criarFormEdicaoProduto(id) {
     rodape.classList.add('form-rodape')
     rodape.append(categoriasSection, acoes)
 
-    // ── Salvar: PUT produto → PUT imagem ──
+    // Salvar: PUT produto → PUT imagem
     btnSalvar.onclick = async () => {
         const nome = inputNome.value.trim()
         const descricao = textareaDesc.value.trim()
@@ -196,38 +194,34 @@ export async function criarFormEdicaoProduto(id) {
 
         if (!nome || !descricao || !temImagem || isNaN(valor)) {
             alert('Preencha todos os campos: nome, descrição, foto e valor.')
-            return
-        }
-
-        if (valor < 0 || valor > 999.99) {
+        } else if (valor < 0 || valor > 999.99) {
             alert('O valor deve ser entre R$ 0,00 e R$ 999,99.')
-            return
-        }
-
-        try {
-            btnSalvar.disabled = true
-            btnSalvar.textContent = 'Salvando...'
-
-            // 1. PUT produto
-            await putProduto(id, {
-                nome,
-                descricao,
-                preco: valor,
-                categoria: [...categoriasSelecionadas].map(catId => ({ id: catId }))
-            })
-
-            // 2. PUT imagem — só faz upload se trocou a foto
-            if (fotoInput.files[0] && imagemId) {
-                const urlImagem = await uploadParaCloudinary(fotoInput.files[0])
-                await putImagem(imagemId, { url: urlImagem, id_produto: id })
+        } else {
+            try {
+                btnSalvar.disabled = true
+                btnSalvar.textContent = 'Salvando...'
+    
+                // 1. PUT produto
+                await putProduto(id, {
+                    nome,
+                    descricao,
+                    preco: valor,
+                    categoria: [...categoriasSelecionadas].map(catId => ({ id: catId }))
+                })
+    
+                // 2. PUT imagem — só faz upload se trocou a foto
+                if (fotoInput.files[0] && imagemId) {
+                    const urlImagem = await uploadParaCloudinary(fotoInput.files[0])
+                    await putImagem(imagemId, { url: urlImagem, id_produto: id })
+                }
+    
+                renderizarPagina('edicao-produtos')
+    
+            } catch (erro) {
+                console.error('Erro ao salvar produto:', erro)
+                btnSalvar.textContent = 'Erro ao salvar'
+                btnSalvar.disabled = false
             }
-
-            renderizarPagina('edicao-produtos')
-
-        } catch (erro) {
-            console.error('Erro ao salvar produto:', erro)
-            btnSalvar.textContent = 'Erro ao salvar'
-            btnSalvar.disabled = false
         }
     }
 

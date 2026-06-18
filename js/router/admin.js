@@ -1,6 +1,6 @@
 'use strict'
 
-const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/admin'
+const URL = 'http://localhost:8080/v1/frequency80cafe/administracao/admin'
 
 export async function getAdmins() {
     const options = {

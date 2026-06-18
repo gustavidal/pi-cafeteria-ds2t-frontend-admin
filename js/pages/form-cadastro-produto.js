@@ -112,7 +112,7 @@ export async function criarFormCadastroProduto() {
 
     try {
         const categorias = await getCategorias()
-        categorias.forEach(cat => {
+        categorias.response.categorias.forEach(cat => {
             const item = document.createElement('label')
             item.classList.add('form-categoria-item')
 

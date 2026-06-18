@@ -1,6 +1,6 @@
 'use strict'
 
-const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/imagem'
+const URL = 'http://localhost:8080/v1/frequency80cafe/administracao/imagem'
 
 export async function getImagens() {
     const response = await fetch(URL)

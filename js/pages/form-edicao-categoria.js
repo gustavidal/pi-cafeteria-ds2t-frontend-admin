@@ -79,7 +79,7 @@ export async function criarFormEdicaoCategoria(id) {
 
     form.append(colunaFoto, colunaCampos)
 
-    // ── Botões de ação ──
+    // Botões de ação
     const acoes = document.createElement('div')
     acoes.classList.add('form-acoes')
 
@@ -101,20 +101,20 @@ export async function criarFormEdicaoCategoria(id) {
 
     acoes.append(btnSalvar, btnDescartar, btnDeletar)
 
-    // ── Pré-carregar dados da categoria ──
+    // Pré-carregar dados da categoria
     try {
         const categoria = await getCategoria(id)
-        inputNome.value = categoria.categoria || ''
-        textareaDesc.value = categoria.descricao || ''
-        if (categoria.imagem) {
-            fotoPreview.src = categoria.imagem
+        inputNome.value = categoria.response.categoria[0].categoria || ''
+        textareaDesc.value = categoria.response.categoria[0].descricao || ''
+        if (categoria.response.categoria[0].imagem) {
+            fotoPreview.src = categoria.response.categoria[0].imagem
             fotoPreview.style.display = 'block'
         }
     } catch (erro) {
         console.error('Erro ao carregar categoria:', erro)
     }
 
-    // ── Salvar (PUT) ──
+    // Salvar (PUT)
     btnSalvar.onclick = async () => {
         const nome = inputNome.value.trim()
         const descricao = textareaDesc.value.trim()
@@ -122,32 +122,31 @@ export async function criarFormEdicaoCategoria(id) {
 
         if (!nome || !descricao || !temImagem) {
             alert('Preencha todos os campos: nome, descrição e foto.')
-            return
-        }
-
-        try {
-            btnSalvar.disabled = true
-            btnSalvar.textContent = 'Salvando...'
-
-            let urlImagem = fotoPreview.src || ''
-
-            if (fotoInput.files[0]) {
-                urlImagem = await uploadParaCloudinary(fotoInput.files[0])
+        } else {
+            try {
+                btnSalvar.disabled = true
+                btnSalvar.textContent = 'Salvando...'
+    
+                let urlImagem = fotoPreview.src || ''
+    
+                if (fotoInput.files[0]) {
+                    urlImagem = await uploadParaCloudinary(fotoInput.files[0])
+                }
+    
+                const dados = {
+                    categoria: nome,
+                    descricao: descricao,
+                    imagem: urlImagem
+                }
+    
+                await putCategoria(id, dados)
+                renderizarPagina('edicao-categorias')
+    
+            } catch (erro) {
+                console.error('Erro ao salvar categoria:', erro)
+                btnSalvar.textContent = 'Erro ao salvar'
+                btnSalvar.disabled = false
             }
-
-            const dados = {
-                categoria: nome,
-                descricao: descricao,
-                imagem: urlImagem
-            }
-
-            await putCategoria(id, dados)
-            renderizarPagina('edicao-categorias')
-
-        } catch (erro) {
-            console.error('Erro ao salvar categoria:', erro)
-            btnSalvar.textContent = 'Erro ao salvar'
-            btnSalvar.disabled = false
         }
     }
 

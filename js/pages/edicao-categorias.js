@@ -20,21 +20,21 @@ export async function criarEdicaoCategorias() {
     try {
         const categorias = await getCategorias()
 
-        categorias.forEach(categoria => {
+        categorias.response.categorias.forEach(categoria => {
             const card = document.createElement('div')
             card.classList.add('item-card')
 
             const imagem = document.createElement('img')
             imagem.classList.add('item-card-imagem')
             imagem.src = categoria.imagem || './img/placeholder.svg'
-            imagem.alt = categoria.nome
+            imagem.alt = categoria.categoria
 
             const info = document.createElement('div')
             info.classList.add('item-card-info')
 
             const nome = document.createElement('span')
             nome.classList.add('item-card-nome')
-            nome.textContent = categoria.nome
+            nome.textContent = categoria.categoria
 
             const descricao = document.createElement('p')
             descricao.classList.add('item-card-descricao')

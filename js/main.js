@@ -1,6 +1,5 @@
 'use strict'
 
-import { criarLogin }                 from './pages/login.js'
 import { criarCadastros }             from './pages/cadastros.js'
 import { criarEdicao }                from './pages/edicao.js'
 import { criarFormCadastroCategoria } from './pages/form-cadastro-categoria.js'
@@ -11,10 +10,6 @@ import { criarEdicaoProdutos }        from './pages/edicao-produtos.js'
 import { criarFormEdicaoProduto }     from './pages/form-edicao-produto.js'
 
 const paginas = {
-    login: {
-        titulo: 'Login',
-        renderizar: criarLogin
-    },
     cadastros: {
         titulo: 'Cadastros',
         renderizar: criarCadastros
@@ -68,10 +63,4 @@ document.getElementById('nav-sair')
         renderizarPagina('login')
     })
 
-// Rota inicial
-const token = localStorage.getItem('token')
-if (token) {
-    renderizarPagina('cadastros')
-} else {
-    renderizarPagina('login')
-}
+renderizarPagina('cadastros')

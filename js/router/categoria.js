@@ -1,6 +1,6 @@
 'use strict'
 
-const URL = 'http://localhost:8090/v1/frequency80cafe/administracao/categoria'
+const URL = 'http://localhost:8080/v1/frequency80cafe/administracao/categoria'
 
 export async function getCategorias() {
     const response = await fetch(URL)
@@ -18,8 +18,7 @@ export async function postCategoria(categoria) {
     const options = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(categoria)
     }

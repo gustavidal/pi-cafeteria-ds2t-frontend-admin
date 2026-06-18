@@ -20,7 +20,7 @@ export async function criarEdicaoProdutos() {
     try {
         const produtos = await getProdutos()
 
-        produtos.forEach(produto => {
+        produtos.response.produtos.forEach(produto => {
             const card = document.createElement('div')
             card.classList.add('item-card')
 
