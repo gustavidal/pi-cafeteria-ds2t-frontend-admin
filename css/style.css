@@ -477,114 +477,250 @@ main {
     background-color: #bbb;
 }
 
-/* RESPONSIVO: TABLET */
-@media (max-width: 1024px) {
-    #navbar {
-        width: 220px;
-        min-width: 220px;
-        border-radius: 0 40px 40px 0;
-    }
-
-    #navbar .titulo {
-        height: 200px;
-        font-size: 13px;
-        border-radius: 0 40px 0 0;
-    }
-
-    #navbar .funcoes {
-        font-size: 13px;
-        gap: 20px;
-    }
-
-    #navbar .sair {
-        width: 130px;
-        height: 60px;
-        font-size: 13px;
-    }
-
-    #navbar .sair p {
-        font-size: 20px;
-    }
-
-    #container .screen {
-        width: 100%;
-        height: auto;
-        min-height: 600px;
-        padding: 30px 30px;
-    }
-}
-
-/* RESPONSIVO: MOBILE */
-@media (max-width: 640px) {
+/* RESPONSIVO: iPad Mini (768px) */
+@media (max-width: 768px) {
     main {
         flex-direction: column;
         height: auto;
         min-height: 100vh;
     }
 
+    /* Navbar vira barra horizontal no topo */
     #navbar {
         width: 100%;
         min-width: unset;
         height: auto;
-        border-radius: 0 0 40px 40px;
+        border-radius: 0 0 30px 30px;
         flex-direction: row;
         align-items: center;
-        padding: 15px 20px;
+        justify-content: space-between;
+        padding: 16px 24px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     #navbar .titulo {
         height: auto;
         border-radius: 0;
-        padding: 10px;
-        font-size: 11px;
+        padding: 0;
+        font-size: 13px;
         box-shadow: none;
         background-color: transparent;
+        width: auto;
     }
 
     #navbar .funcoes {
         flex-direction: row;
         margin: 0;
-        gap: 15px;
-        font-size: 12px;
+        gap: 24px;
+        font-size: 13px;
         height: auto;
         align-items: center;
     }
 
     #navbar .sair {
         width: auto;
-        height: 40px;
-        padding: 0 18px;
+        height: 44px;
+        padding: 0 20px;
         margin: 0;
-        border-radius: 20px;
+        border-radius: 22px;
     }
 
     #navbar .sair p {
-        font-size: 14px;
+        font-size: 16px;
     }
 
+    /* Screen ocupa toda a largura abaixo da navbar */
     #container {
-        padding: 15px;
         width: 100%;
+        padding: 20px 16px;
+        align-items: flex-start;
+        height: auto;
     }
 
     #container .screen {
         width: 100%;
         height: auto;
-        padding: 25px 20px;
-        border-radius: 15px;
+        min-height: unset;
+        padding: 28px 24px;
+        border-radius: 16px;
+    }
+
+    /* Cards de cadastro/edição lado a lado no iPad */
+    .screen-cadastros,
+    .screen-edicao {
+        height: auto;
     }
 
     .cadastro-card {
+        height: auto;
+        min-height: 90px;
+        padding: 16px 20px;
+    }
+
+    /* Lista de itens */
+    .lista-container {
+        max-height: none;
+    }
+
+    /* Formulário: colunas empilham */
+    .form-edicao {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .form-coluna-foto {
+        flex-direction: row;
+        align-items: flex-start;
+        min-width: unset;
+        width: 100%;
+        gap: 16px;
+    }
+
+    .form-foto-box {
+        width: 90px;
+        height: 90px;
+        flex-shrink: 0;
+    }
+
+    /* Rodapé do formulário de produto empilha */
+    .form-rodape {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-categorias-section {
+        min-width: unset;
+        max-width: unset;
+        width: 100%;
+    }
+
+    .form-acoes {
+        align-items: stretch;
+    }
+
+    .form-btn {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* RESPONSIVO: iPhone SE (375px) */
+@media (max-width: 390px) {
+    #navbar {
+        padding: 12px 14px;
+        border-radius: 0 0 20px 20px;
+        gap: 8px;
+    }
+
+    #navbar .titulo {
+        font-size: 10px;
+        /* Esconde o título longo no SE para não quebrar linha */
+        display: none;
+    }
+
+    #navbar .funcoes {
+        gap: 14px;
+        font-size: 11px;
+    }
+
+    #navbar .sair {
+        height: 36px;
+        padding: 0 14px;
+        border-radius: 18px;
+    }
+
+    #navbar .sair p {
+        font-size: 13px;
+    }
+
+    #container {
+        padding: 12px 10px;
+    }
+
+    #container .screen {
+        padding: 20px 14px;
+        border-radius: 12px;
+    }
+
+    /* Cards de cadastro mais compactos */
+    .cadastro-card {
         flex-wrap: wrap;
+        padding: 14px 16px;
+        gap: 10px;
+        min-height: unset;
     }
 
     .cadastro-card .card-label {
         min-width: unset;
         width: 100%;
+        font-size: 14px;
+    }
+
+    .cadastro-card .card-descricao {
+        width: 100%;
+        font-size: 12px;
     }
 
     .cadastro-card .card-btn {
         width: 100%;
         text-align: center;
+        padding: 10px;
+    }
+
+    /* Item cards na lista de edição */
+    .item-card {
+        gap: 12px;
+        min-height: 80px;
+    }
+
+    .item-card-imagem {
+        width: 80px;
+        height: 80px;
+    }
+
+    .item-card-nome {
+        font-size: 12px;
+    }
+
+    .item-card-descricao {
+        font-size: 11px;
+    }
+
+    .card-btn--editar {
+        padding: 6px 14px;
+        font-size: 11px;
+        margin-right: 12px;
+    }
+
+    /* Formulário */
+    .form-coluna-foto {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-foto-box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 14px; /* evita zoom automático no iOS */
+        padding: 10px 12px;
+    }
+
+    .form-acoes {
+        gap: 8px;
+    }
+
+    .form-btn {
+        padding: 12px 16px;
+        font-size: 12px;
+    }
+
+    .btn-voltar {
+        font-size: 24px;
+        margin-top: 14px;
     }
 }

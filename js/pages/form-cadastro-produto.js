@@ -131,12 +131,7 @@ export async function criarFormCadastroProduto() {
         console.error('Erro ao carregar categorias:', erro)
     }
 
-    const btnConfirmar = document.createElement('button')
-    btnConfirmar.type = 'button'
-    btnConfirmar.classList.add('form-btn-confirmar')
-    btnConfirmar.textContent = 'Confirmar'
-
-    categoriasSection.append(categoriasLabel, categoriasLista, btnConfirmar)
+    categoriasSection.append(categoriasLabel, categoriasLista)
 
 
 

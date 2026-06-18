@@ -152,12 +152,7 @@ export async function criarFormEdicaoProduto(id) {
         console.error('Erro ao carregar produto:', erro)
     }
 
-    const btnConfirmar = document.createElement('button')
-    btnConfirmar.type = 'button'
-    btnConfirmar.classList.add('form-btn-confirmar')
-    btnConfirmar.textContent = 'Confirmar'
-
-    categoriasSection.append(categoriasLabel, categoriasLista, btnConfirmar)
+    categoriasSection.append(categoriasLabel, categoriasLista)
 
     // ── Botões de ação ──
     const acoes = document.createElement('div')
